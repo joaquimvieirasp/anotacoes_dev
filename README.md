@@ -128,6 +128,18 @@ git commit -m "mensagem do commit"
 
 git push
 
+# Github - Subir código em um repositório já exitente
+
+git init
+
+git add .
+
+git commit -m "msg do commit"
+
+git remote add origin + https://github.com/joaquimvieirasp/treinamento_rust2024.git (exemplo) (precisa digitar usuário e senha)
+
+git push
+
 # Postgres
 
 Principais comandos para acessar o postgres:
