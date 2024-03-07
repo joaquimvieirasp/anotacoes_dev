@@ -142,6 +142,12 @@ git push
 
 fonte: https://www.youtube.com/watch?v=aINs3ouaoJk
 
+# Github - Criar uma branch
+
+git checkout -b + nome da branch a ser criada 
+
+_esse comando cria uma nova branch e já muda pra ela_
+
 # Postgres
 
 Principais comandos para acessar o postgres:
