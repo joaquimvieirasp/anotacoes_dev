@@ -140,6 +140,8 @@ git remote add origin + https://github.com/joaquimvieirasp/treinamento_rust2024.
 
 git push
 
+fonte: https://www.youtube.com/watch?v=aINs3ouaoJk
+
 # Postgres
 
 Principais comandos para acessar o postgres:
