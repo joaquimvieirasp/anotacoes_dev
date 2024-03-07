@@ -140,6 +140,9 @@ git remote add origin + https://github.com/joaquimvieirasp/treinamento_rust2024.
 
 git push
 
+<img width="875" alt="image" src="https://github.com/joaquimvieirasp/anotacoes_dev/assets/77693436/a9c384b0-ae78-4360-8209-ae82c065bdb8">
+
+
 fonte: https://www.youtube.com/watch?v=aINs3ouaoJk
 
 # Github - Criar uma branch
