@@ -220,7 +220,58 @@ Dica:
 
 Para mais informações sobre como usar o Podman, consulte a documentação oficial ou utilize o comando podman --help
 
+# Testando o Podman
+1. Verificando a versão:
 
+podman --version
+2. Executando um container simples:
+
+podman run hello-world
+Este comando executará a imagem "hello-world" do Docker Hub e imprimirá a mensagem "Hello from Docker!".
+
+3. Executando um container com comandos:
+
+podman run -it --rm alpine sh
+Este comando executará a imagem "alpine" e abrirá um shell interativo dentro do container. Você pode executar comandos dentro do container e sair com o comando exit.
+
+4. Criando e executando um container a partir de um Dockerfile:
+
+# Crie um Dockerfile chamado "Dockerfile" com o seguinte conteúdo:
+FROM alpine
+
+RUN echo "Hello from my container!"
+
+CMD ["echo", "Hello from my container!"]
+
+# Construa a imagem
+podman build -t my-image .
+
+# Execute a imagem
+podman run my-image
+Este comando criará uma imagem chamada "my-image" a partir do Dockerfile, e executará a imagem, imprimindo a mensagem "Hello from my container!".
+
+5. Testando comandos Podman:
+
+podman images: Lista as imagens disponíveis.
+podman ps: Lista os containers em execução.
+podman run: Executa um container.
+podman build: Constrói uma imagem a partir de um Dockerfile.
+podman inspect: Mostra informações sobre um container.
+podman rm: Remove um container.
+Recursos adicionais:
+
+Documentação oficial do Podman: https://es.wiktionary.org/wiki/removido
+Tutoriais do Podman: https://es.wiktionary.org/wiki/removido
+Exemplos de uso do Podman: https://es.wiktionary.org/wiki/removido
+Observações:
+
+Certifique-se de ter o Podman instalado antes de executar os comandos.
+Utilize o comando podman --help para obter mais informações sobre cada comando.
+Dicas:
+
+Experimente executar diferentes comandos para se familiarizar com o Podman.
+Utilize o Docker Hub para encontrar imagens que você pode usar para testar o Podman.
+Consulte a documentação oficial para obter mais informações sobre como usar o Podman.
 
 
 
