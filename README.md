@@ -170,6 +170,51 @@ Instalar o pacote ADMIN PACK do Postgres ( instala algumas ferramentas adicionai
  Criar um usuário especifico no postgres
  
  sudo -u postgres createuser -D -A -P joaquim
+ 
+# Instalação Podman
+
+Instalando o Podman no Debian 12
+Opção 1: Usando o repositório oficial:
+
+Atualize a lista de pacotes:
+sudo apt update
+Instale o Podman e seus pacotes de dependência:
+sudo apt install podman
+Opção 2: Instalando a versão mais recente:
+
+Adicione o repositório Podman:
+echo "deb https://download.opensuse.org/repositories/devel:/podman/Debian_12/ /" | sudo tee /etc/apt/sources.list.d/devel:podman.list
+Importe a chave GPG do repositório:
+sudo wget -q https://download.opensuse.org/repositories/devel:/podman/Debian_12/Release.key -O- | sudo apt-key add -
+Atualize a lista de pacotes e instale o Podman:
+sudo apt update
+sudo apt install podman
+Verificação da instalação:
+
+podman --version
+Opções adicionais:
+
+Podman Compose:
+sudo apt install podman-compose
+Buildah:
+sudo apt install buildah
+Recursos:
+
+Documentação oficial do Podman: https://podman.io/
+Guia de instalação do Podman no Debian: [URL inválido removido]
+Observações:
+
+A versão do Podman no repositório oficial do Debian pode ser mais antiga que a versão disponível no repositório OpenSUSE.
+Certifique-se de escolher a opção de instalação mais adequada para suas necessidades.
+Exemplo de uso:
+
+podman run hello-world
+Este comando executará a imagem "hello-world" do Docker Hub.
+
+Dica:
+
+Para mais informações sobre como usar o Podman, consulte a documentação oficial ou utilize o comando podman --help
+
 
 
 
