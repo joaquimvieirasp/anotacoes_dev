@@ -273,7 +273,60 @@ Experimente executar diferentes comandos para se familiarizar com o Podman.
 Utilize o Docker Hub para encontrar imagens que você pode usar para testar o Podman.
 Consulte a documentação oficial para obter mais informações sobre como usar o Podman.
 
+Aqui está o código comentado em português:
 
+#Python
+
+# Importa bibliotecas necessárias para interagir com Zenoh, gerar dados aleatórios e pausar a execução
+import zenoh
+import random
+import time
+
+# Inicializa o gerador de números aleatórios para leituras de temperatura consistentes (mas aleatórias)
+random.seed()
+
+# Define uma função para simular a leitura de um sensor de temperatura
+def read_temp():
+  """
+  Esta função simula a leitura de um sensor de temperatura retornando um inteiro aleatório
+  entre 15 e 30 graus Celsius.
+  """
+  return random.randint(15, 30)
+
+# Bloco principal de execução (só roda quando o script é executado diretamente)
+if __name__ == "__main__":
+
+  # Abre uma sessão Zenoh para conectar à rede de distribuição de dados
+  session = zenoh.open()
+
+  # Define a chave (nome do recurso) sob a qual os dados de temperatura serão publicados
+  key = 'myhome/cozinha/temp'  # 'cozinha' significa 'kitchen' em português
+
+  # Cria um publicador para enviar dados para a chave especificada no Zenoh
+  pub = session.declare_publisher(key)
+
+  # Simula e publica leituras de temperatura continuamente
+  while True:
+    # Gera um valor aleatório de temperatura
+    t = read_temp()
+
+    # Converte o valor da temperatura em string para publicação
+    buf = f"{t}"
+
+    # Imprime uma mensagem indicando que os dados estão sendo publicados
+    print(f"Enviando Dados ('{key}': '{buf}')...")  # 'Enviando Dados' em vez de 'Putting Data'
+
+    # Publica os dados de temperatura no Zenoh sob a chave definida
+    pub.put(buf)
+
+    # Pausa a execução por 1 segundo antes da próxima publicação
+    time.sleep(1)
+Use o código com cuidado.
+Alterações feitas:
+
+Traduzidos os comentários para o português.
+Substituído "kitchen" por "cozinha" na definição da chave (key).
+Alterado "Putting Data" para "Enviando Dados" na mensagem de impressão para melhor entendimento.
 
 
 
