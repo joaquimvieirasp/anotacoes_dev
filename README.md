@@ -328,6 +328,62 @@ Traduzidos os comentários para o português.
 Substituído "kitchen" por "cozinha" na definição da chave (key).
 Alterado "Putting Data" para "Enviando Dados" na mensagem de impressão para melhor entendimento.
 
+Criando um código em Rust para ler um arquivo TXT
+1. Importando as bibliotecas necessárias:
 
+Rust
+use std::fs;
+use std::io::Read;
+Use o código com cuidado.
+2. Definindo a função para ler o arquivo:
+
+Rust
+fn ler_arquivo_txt(caminho: &str) -> Result<String, std::io::Error> {
+    let mut arquivo = fs::File::open(caminho)?;
+    let mut conteudo = String::new();
+    arquivo.read_to_string(&mut conteudo)?;
+    Ok(conteudo)
+}
+Use o código com cuidado.
+3. Usando a função para ler o arquivo:
+
+Rust
+fn main() {
+    let caminho_do_arquivo = "caminho/para/arquivo.txt";
+    let resultado = ler_arquivo_txt(caminho_do_arquivo);
+
+    match resultado {
+        Ok(conteudo) => println!("Conteúdo do arquivo:\n{}", conteudo),
+        Err(erro) => println!("Erro ao ler o arquivo: {}", erro),
+    }
+}
+Use o código com cuidado.
+Explicação do código:
+
+use std::fs; - Importa a biblioteca fs que fornece funções para manipulação de arquivos.
+use std::io::Read; - Importa o trait Read que permite ler dados de um arquivo.
+fn ler_arquivo_txt(caminho: &str) -> Result<String, std::io::Error> - Define a função ler_arquivo_txt que recebe o caminho do arquivo como parâmetro e retorna um Result que pode ser Ok com o conteúdo do arquivo ou Err com um erro caso a leitura falhe.
+let mut arquivo = fs::File::open(caminho)?; - Abre o arquivo no caminho especificado e armazena o resultado em uma variável mutável arquivo.
+let mut conteudo = String::new(); - Cria uma nova string vazia para armazenar o conteúdo do arquivo.
+arquivo.read_to_string(&mut conteudo)?; - Lê o conteúdo do arquivo e o armazena na string conteudo.
+Ok(conteudo) - Retorna um Result::Ok com o conteúdo do arquivo.
+Err(erro) - Retorna um Result::Err com o erro que ocorreu durante a leitura do arquivo.
+fn main() - Função principal do programa.
+let caminho_do_arquivo = "caminho/para/arquivo.txt"; - Define a variável caminho_do_arquivo com o caminho do arquivo que deseja ler.
+let resultado = ler_arquivo_txt(caminho_do_arquivo); - Chama a função ler_arquivo_txt com o caminho do arquivo como parâmetro e armazena o resultado em uma variável resultado.
+match resultado { - Usa um match para verificar o resultado da função ler_arquivo_txt.
+Ok(conteudo) => println!("Conteúdo do arquivo:\n{}", conteudo), - Se a função retornou Ok, imprime o conteúdo do arquivo.
+Err(erro) => println!("Erro ao ler o arquivo: {}", erro), - Se a função retornou Err, imprime a mensagem de erro.
+} - Fecha o bloco match.
+Observações:
+
+Você precisa substituir caminho/para/arquivo.txt pelo caminho real do seu arquivo TXT.
+Certifique-se de que o arquivo TXT está no mesmo diretório que o seu código Rust.
+Este código é um exemplo básico e pode ser adaptado para atender às suas necessidades específicas.
+Recursos adicionais:
+
+Documentação da biblioteca std::fs: https://doc.rust-lang.org/std/fs/
+Documentação do trait std::io::Read: https://doc.rust-lang.org/std/io/trait.Read.html
+Tutoriais de Rust: https://doc.rust-lang.org/book/
 
 
