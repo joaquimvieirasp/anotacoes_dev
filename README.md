@@ -387,3 +387,78 @@ Documentação do trait std::io::Read: https://doc.rust-lang.org/std/io/trait.Re
 Tutoriais de Rust: https://doc.rust-lang.org/book/
 
 
+
+Criando um servidor de meteorologia em Rust para ver a temperatura de uma cidade
+1. Importando as bibliotecas necessárias:
+
+Rust
+use actix_web::{App, HttpServer, Responder};
+use serde::Deserialize;
+use reqwest::Client;
+Use o código com cuidado.
+2. Definindo a estrutura para armazenar os dados da API:
+
+Rust
+#[derive(Deserialize)]
+struct WeatherData {
+    main: WeatherMain,
+}
+
+#[derive(Deserialize)]
+struct WeatherMain {
+    temp: f64,
+}
+Use o código com cuidado.
+3. Definindo a rota para a API:
+
+Rust
+async fn get_weather(city: &str) -> impl Responder {
+    let client = Client::new();
+    let url = format!("https://api.openweathermap.org/data/2.5/weather?q={}&appid={}", city, API_KEY);
+    let response = client.get(url).send().await?;
+    let weather_data: WeatherData = response.json().await?;
+
+    format!("A temperatura em {} é de {:.1}°C", city, weather_data.main.temp)
+}
+Use o código com cuidado.
+4. Iniciando o servidor:
+
+Rust
+fn main() {
+    let app = App::new()
+        .service(web::resource("/weather/{city}").route(get_weather));
+
+    HttpServer::new(|| app)
+        .bind("localhost:8080")
+        .unwrap()
+        .run()
+        .unwrap();
+}
+Use o código com cuidado.
+Explicação do código:
+
+use actix_web::{App, HttpServer, Responder}; - Importa as bibliotecas necessárias do Actix Web para criar um servidor web.
+use serde::Deserialize; - Importa a biblioteca Serde para deserializar o JSON da API.
+use reqwest::Client; - Importa a biblioteca reqwest para fazer requisições HTTP.
+#[derive(Deserialize)] - Declara que a struct WeatherData pode ser desserializada a partir de JSON.
+struct WeatherData { main: WeatherMain, } - Define a struct WeatherData com um campo main do tipo WeatherMain.
+#[derive(Deserialize)] - Declara que a struct WeatherMain pode ser desserializada a partir de JSON.
+struct WeatherMain { temp: f64, } - Define a struct WeatherMain com um campo temp do tipo f64 que representa a temperatura.
+async fn get_weather(city: &str) -> impl Responder { - Define a função assíncrona get_weather que recebe o nome da cidade como parâmetro e retorna um valor que implementa a trait Responder.
+let client = Client::new(); - Cria um novo cliente HTTP.
+let url = format!("https://api.openweathermap.org/data/2.5/weather?q={}&appid={}", city, API_KEY); - Formata a URL da API com o nome da cidade e a chave da API.
+let response = client.get(url).send().await?; - Faz uma requisição GET para a API e espera a resposta.
+let weather_data: WeatherData = response.json().await?; - Desserializa o JSON da resposta para a struct WeatherData.
+format!("A temperatura em {} é de {:.1}°C", city, weather_data.main.temp) - Formata a string de resposta com a temperatura da cidade.
+fn main() - Função principal do programa.
+let app = App::new().service(web::resource("/weather/{city}").route(get_weather)); - Cria um novo aplicativo Actix Web com a rota /weather/{city} que mapeia para a função get_weather.
+HttpServer::new(|| app).bind("localhost:8080").unwrap().run().unwrap(); - Inicia o servidor na porta 8080.
+Observações:
+
+Você precisa substituir API_KEY pela sua chave da API do OpenWeatherMap.
+Este código é um exemplo básico e pode ser adaptado para atender às suas necessidades específicas.
+Recursos adicionais:
+
+Documentação do Actix Web: https://actix.rs/
+Documentação do Serde: https://serde.rs/
+Documentação da biblioteca reqwest: [https://docs.
