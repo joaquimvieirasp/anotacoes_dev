@@ -462,3 +462,106 @@ Recursos adicionais:
 Documentação do Actix Web: https://actix.rs/
 Documentação do Serde: https://serde.rs/
 Documentação da biblioteca reqwest: [https://docs.
+
+# Keycloak
+
+use keycloak_client::{KeycloakClient, KeycloakError};
+
+fn main() -> Result<(), KeycloakError> {
+    // Crie um cliente Keycloak
+    let client = KeycloakClient::new("https://localhost:8080/auth/realms/master");
+
+    // Autentique-se com o Keycloak
+    let token = client.authenticate("admin", "admin")?;
+
+    // Obtenha informações sobre o usuário atual
+    let user = client.get_user(token.access_token)?;
+
+    // Imprima o nome do usuário
+    println!("Nome do usuário: {}", user.username);
+
+    Ok(())
+}
+O código que você forneceu faz o seguinte:
+
+Cria um cliente Keycloak: Ele usa a biblioteca keycloak_client para criar um cliente que pode interagir com o servidor Keycloak. O cliente é configurado com o URL do servidor Keycloak ("https://localhost:8080/auth/realms/master").
+
+Autentica-se com o Keycloak: Ele usa o cliente Keycloak para se autenticar no servidor Keycloak. A função authenticate recebe o nome de usuário ("admin") e a senha ("admin") como parâmetros e retorna um token de acesso se a autenticação for bem-sucedida.
+
+Obtém informações sobre o usuário atual: Ele usa o token de acesso para obter informações sobre o usuário atualmente autenticado. A função get_user recebe o token de acesso como parâmetro e retorna um objeto User que contém informações sobre o usuário.
+
+Imprime o nome do usuário: Finalmente, o código imprime o nome do usuário obtido do objeto User.
+
+Em resumo, o código usa a biblioteca keycloak_client para se autenticar no servidor Keycloak, obter informações sobre o usuário atual e imprimir o nome do usuário.
+
+Observações:
+
+Este código é um exemplo simples e pode ser adaptado para atender às suas necessidades específicas.
+Certifique-se de usar uma versão estável da biblioteca keycloak_client.
+Verifique se o servidor Keycloak está acessível.
+Use um ambiente de teste para testar o código.
+Recursos adicionais:
+
+Documentação da biblioteca keycloak_client: https://dle.rae.es/inv%C3%A1lido
+Exemplos de código: https://dle.rae.es/inv%C3%A1lido
+Outras opções:
+
+Você também pode usar a biblioteca reqwest para fazer requests HTTP diretamente para o servidor Keycloak.
+Se você estiver familiarizado com a linguagem Rust, você pode escrever seu próprio código para interagir com o Keycloak.
+Espero que isso ajude!
+
+foto do perfil
+como rodar esse codigo? use keycloak_client::{KeycloakClient, KeycloakError};
+
+fn main() -> Result<(), KeycloakError> {
+  // Crie um cliente Keycloak
+  let client = KeycloakClient::new("https://localhost:8080/auth/realms/master");
+
+  // Autentique-se com o Keycloak
+  let token = client.authenticate("admin", "admin")?;
+
+  // Obtenha informações sobre o usuário atual
+  let user = client.get_user(token.access_token)?;
+
+  // Imprima o nome do usuário
+  println!("Nome do usuário: {}", user.username);
+
+  Ok(())
+}
+
+
+Para rodar o código que você forneceu, siga estas etapas:
+
+1. Instale o Rust:
+
+Acesse o site oficial do Rust: https://www.rust-lang.org/
+Siga as instruções para instalar o Rust em seu sistema operacional.
+2. Instale a biblioteca keycloak_client:
+
+Abra o terminal e digite o seguinte comando:
+cargo install keycloak-client
+3. Crie um novo projeto Rust:
+
+Abra o terminal e digite o seguinte comando:
+cargo new keycloak_example
+4. Cole o código no arquivo main.rs:
+
+Abra o arquivo main.rs no seu editor de texto favorito.
+Cole o código que você forneceu no arquivo.
+5. Compile e execute o código:
+
+Abra o terminal e navegue até o diretório do projeto.
+Digite o seguinte comando para compilar o código:
+cargo build
+Digite o seguinte comando para executar o código:
+cargo run
+Observações:
+
+Certifique-se de ter instalado o Rust e a biblioteca keycloak_client antes de executar o código.
+Se você receber erros ao compilar ou executar o código, verifique se o código está correto e se você instalou o Rust e a biblioteca keycloak_client corretamente.
+Você pode usar um ambiente de desenvolvimento integrado (IDE) como o Visual Studio Code ou o IntelliJ IDEA para facilitar o desenvolvimento do seu código Rust.
+Recursos adicionais:
+
+Documentação do Rust: https://doc.rust-lang.org/beta/
+Documentação da biblioteca keycloak_client: https://dle.rae.es/inv%C3%A1lido
+Tutoriais Rust: https://m.youtube.com/watch?v=ygL_xcavzQ4
