@@ -392,6 +392,8 @@ Criando um servidor de meteorologia em Rust para ver a temperatura de uma cidade
 1. Importando as bibliotecas necessárias:
 
 Rust
+
+```
 use actix_web::{App, HttpServer, Responder};
 use serde::Deserialize;
 use reqwest::Client;
@@ -412,6 +414,7 @@ Use o código com cuidado.
 3. Definindo a rota para a API:
 
 Rust
+
 async fn get_weather(city: &str) -> impl Responder {
     let client = Client::new();
     let url = format!("https://api.openweathermap.org/data/2.5/weather?q={}&appid={}", city, API_KEY);
@@ -434,6 +437,9 @@ fn main() {
         .run()
         .unwrap();
 }
+```
+
+
 Use o código com cuidado.
 Explicação do código:
 
@@ -482,6 +488,7 @@ fn main() -> Result<(), KeycloakError> {
 
     Ok(())
 }
+
 O código que você forneceu faz o seguinte:
 
 Cria um cliente Keycloak: Ele usa a biblioteca keycloak_client para criar um cliente que pode interagir com o servidor Keycloak. O cliente é configurado com o URL do servidor Keycloak ("https://localhost:8080/auth/realms/master").
@@ -513,7 +520,7 @@ Espero que isso ajude!
 foto do perfil
 como rodar esse codigo? use keycloak_client::{KeycloakClient, KeycloakError};
 
-fn main() -> Result<(), KeycloakError> {
+ fn main() -> Result<(), KeycloakError> {
   // Crie um cliente Keycloak
   let client = KeycloakClient::new("https://localhost:8080/auth/realms/master");
 
@@ -527,28 +534,32 @@ fn main() -> Result<(), KeycloakError> {
   println!("Nome do usuário: {}", user.username);
 
   Ok(())
-}
+} 
 
 
-Para rodar o código que você forneceu, siga estas etapas:
+### Para rodar o código que você forneceu, siga estas etapas:
 
-1. Instale o Rust:
+### 1. Instale o Rust:
 
 Acesse o site oficial do Rust: https://www.rust-lang.org/
 Siga as instruções para instalar o Rust em seu sistema operacional.
-2. Instale a biblioteca keycloak_client:
+
+### 2. Instale a biblioteca keycloak_client:
 
 Abra o terminal e digite o seguinte comando:
 cargo install keycloak-client
-3. Crie um novo projeto Rust:
+
+### 3. Crie um novo projeto Rust:
 
 Abra o terminal e digite o seguinte comando:
 cargo new keycloak_example
-4. Cole o código no arquivo main.rs:
+
+### 4. Cole o código no arquivo main.rs:
 
 Abra o arquivo main.rs no seu editor de texto favorito.
 Cole o código que você forneceu no arquivo.
-5. Compile e execute o código:
+
+### 5. Compile e execute o código:
 
 Abra o terminal e navegue até o diretório do projeto.
 Digite o seguinte comando para compilar o código:
