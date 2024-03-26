@@ -610,3 +610,141 @@ Recursos adicionais:
 Documentação do Rust: https://doc.rust-lang.org/beta/
 Documentação da biblioteca keycloak_client: https://dle.rae.es/inv%C3%A1lido
 Tutoriais Rust: https://m.youtube.com/watch?v=ygL_xcavzQ4
+
+
+
+# Animações básicas na linha de comando com Rust
+
+### Existem diversas maneiras de criar animações na linha de comando com Rust. Aqui estão algumas opções:
+
+1. Usando o módulo crossterm:
+
+O módulo crossterm fornece APIs para controlar o cursor, limpar a tela e outras funcionalidades úteis para criar animações simples.
+
+Exemplo:
+
+```rust
+// Rust
+use crossterm::{cursor, terminal};
+
+fn main() {
+    let mut stdout = terminal::stdout();
+
+    for i in 0..10 {
+        cursor::move_to(&mut stdout, (i, 0)).unwrap();
+        stdout.write(b"█").unwrap();
+        std::thread::sleep(std::time::Duration::from_millis(100));
+    }
+
+    cursor::show(&mut stdout).unwrap();
+}
+
+```
+Este código cria uma barra de progresso simples que se move da esquerda para a direita na tela.
+
+2. Usando o módulo tui:
+
+O módulo tui fornece uma biblioteca gráfica de alto nível para criar interfaces de usuário na linha de comando.
+
+Exemplo:
+
+```rust
+
+use tui::{
+    backend::CrosstermBackend,
+    layout::{Constraint, Direction, Layout},
+    style::{Color, Modifier, Style},
+    text::{Span, Text},
+    widgets::{Block, Borders, Gauge},
+    Frame, Terminal,
+};
+
+fn main() {
+    let mut terminal = Terminal::new(CrosstermBackend::new()).unwrap();
+    terminal.clear().unwrap();
+
+    let gauge = Gauge::default()
+        .block(Block::default().title("Carregando..."))
+        .borders(Borders::ALL)
+        .style(Style::default().fg(Color::Red).modifier(Modifier::BOLD));
+
+    let layout = Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints([Constraint::Percentage(80), Constraint::Length(10)])
+        .margin(1)
+        .split(gauge);
+
+    let mut frame = Frame::new(terminal, layout);
+
+    for i in 0..100 {
+        frame.render(&mut terminal).unwrap();
+        gauge.set_ratio(i as f64 / 100.0);
+        std::thread::sleep(std::time::Duration::from_millis(10));
+    }
+
+    frame.set_text(
+        Text::raw("Concluído!").style(Style::default().fg(Color::Green)),
+    );
+    frame.render(&mut terminal).unwrap();
+}
+
+```
+
+Este código cria um indicador de carregamento que aumenta de 0% a 100%.
+
+3. Usando o módulo ggez:
+
+O módulo ggez fornece uma biblioteca gráfica 2D completa para criar jogos e outras aplicações com animações complexas.
+
+Exemplo:
+
+```rust
+
+use ggez::{
+    conf,
+    event::{self, Event},
+    graphics::{self, Color, DrawParam},
+    Context, GameResult,
+};
+
+fn main() -> GameResult {
+    let (ctx, event_loop) = &mut conf::Conf::new().init()?;
+
+    let mut circle = graphics::Mesh::new_circle(
+        &ctx,
+        graphics::DrawMode::fill(),
+        (0.0, 0.0),
+        100.0,
+        1.0,
+        Color::WHITE,
+    )?;
+
+    let mut rotation = 0.0;
+
+    event::run(ctx, event_loop, move |ctx, event| {
+        match event {
+            Event::Quit(_) => true,
+            Event::Update(_) => {
+                rotation += 0.01;
+                circle.set_rotation(rotation);
+
+                graphics::clear(ctx, Color::BLACK);
+                graphics::draw(ctx, &circle, DrawParam::new());
+                graphics::present(ctx)?;
+            }
+            _ => false,
+        }
+    })
+}
+
+```
+
+Este código cria uma animação de um círculo girando na tela.
+
+Recursos adicionais:
+
+Documentação do módulo crossterm: https://docs.rs/crossterm/
+Documentação do módulo tui: https://docs.rs/tui/
+Documentação do módulo ggez: https://docs.rs/ggez/
+[Tutoriais de animações na linha de comando com Rust](https://doc.rust-lang.org/book/ch19-00-advanced-features.html
+
