@@ -100,12 +100,18 @@ Não é muito complicado e ambos os comandos têm uma sintaxe um tanto semelhant
 
 Esta tabela deve ajudá-lo.
 
-Comando Systemd						Comando Sysvinit
+Comando Systemd				Comando Sysvinit
+
 systemctl start service_name		service service_name start
-systemctl stop service_name			service service_name stop
+
+systemctl stop service_name             service service_name stop
+
 systemctl restart service_name		service service_name restart
+
 systemctl status service_name		service service_name status
+
 systemctl enable service_name		chkconfig service_name on
+
 systemctl disable service_name		chkconfig service_name off
 
 Seja qual for o tutorial que você está seguindo, tente usar os comandos equivalentes e você não verá a mensagem "O sistema não foi inicializado com o systemd como sistema init (PID 1). Não é possível operar".
@@ -236,17 +242,17 @@ Este comando executará a imagem "alpine" e abrirá um shell interativo dentro d
 
 4. Criando e executando um container a partir de um Dockerfile:
 
-# Crie um Dockerfile chamado "Dockerfile" com o seguinte conteúdo:
+ Crie um Dockerfile chamado "Dockerfile" com o seguinte conteúdo:
 FROM alpine
 
 RUN echo "Hello from my container!"
 
 CMD ["echo", "Hello from my container!"]
 
-# Construa a imagem
+ Construa a imagem
 podman build -t my-image .
 
-# Execute a imagem
+ Execute a imagem
 podman run my-image
 Este comando criará uma imagem chamada "my-image" a partir do Dockerfile, e executará a imagem, imprimindo a mensagem "Hello from my container!".
 
@@ -495,7 +501,7 @@ Documentação da biblioteca reqwest: [https://docs.
 
 # Keycloak
 
-```rut
+```rust
 
 use keycloak_client::{KeycloakClient, KeycloakError};
 
