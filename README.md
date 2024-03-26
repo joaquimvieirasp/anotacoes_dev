@@ -274,6 +274,7 @@ Utilize o Docker Hub para encontrar imagens que você pode usar para testar o Po
 Consulte a documentação oficial para obter mais informações sobre como usar o Podman.
 
 Aqui está o código comentado em português:
+```python
 
 #Python
 
@@ -321,6 +322,8 @@ if __name__ == "__main__":
 
     # Pausa a execução por 1 segundo antes da próxima publicação
     time.sleep(1)
+```
+
 Use o código com cuidado.
 Alterações feitas:
 
@@ -331,13 +334,14 @@ Alterado "Putting Data" para "Enviando Dados" na mensagem de impressão para mel
 Criando um código em Rust para ler um arquivo TXT
 1. Importando as bibliotecas necessárias:
 
-Rust
+```rust
+
 use std::fs;
 use std::io::Read;
 Use o código com cuidado.
 2. Definindo a função para ler o arquivo:
 
-Rust
+
 fn ler_arquivo_txt(caminho: &str) -> Result<String, std::io::Error> {
     let mut arquivo = fs::File::open(caminho)?;
     let mut conteudo = String::new();
@@ -347,7 +351,7 @@ fn ler_arquivo_txt(caminho: &str) -> Result<String, std::io::Error> {
 Use o código com cuidado.
 3. Usando a função para ler o arquivo:
 
-Rust
+
 fn main() {
     let caminho_do_arquivo = "caminho/para/arquivo.txt";
     let resultado = ler_arquivo_txt(caminho_do_arquivo);
@@ -357,24 +361,44 @@ fn main() {
         Err(erro) => println!("Erro ao ler o arquivo: {}", erro),
     }
 }
+
+```
+
 Use o código com cuidado.
 Explicação do código:
 
 use std::fs; - Importa a biblioteca fs que fornece funções para manipulação de arquivos.
+
 use std::io::Read; - Importa o trait Read que permite ler dados de um arquivo.
-fn ler_arquivo_txt(caminho: &str) -> Result<String, std::io::Error> - Define a função ler_arquivo_txt que recebe o caminho do arquivo como parâmetro e retorna um Result que pode ser Ok com o conteúdo do arquivo ou Err com um erro caso a leitura falhe.
+
+fn ler_arquivo_txt(caminho: &str) -> Result<String, 
+
+std::io::Error> - Define a função ler_arquivo_txt que recebe o caminho do arquivo como parâmetro e retorna um Result que pode ser Ok com o conteúdo do arquivo ou Err com um erro caso a leitura falhe.
+
 let mut arquivo = fs::File::open(caminho)?; - Abre o arquivo no caminho especificado e armazena o resultado em uma variável mutável arquivo.
+
 let mut conteudo = String::new(); - Cria uma nova string vazia para armazenar o conteúdo do arquivo.
+
 arquivo.read_to_string(&mut conteudo)?; - Lê o conteúdo do arquivo e o armazena na string conteudo.
+
 Ok(conteudo) - Retorna um Result::Ok com o conteúdo do arquivo.
+
 Err(erro) - Retorna um Result::Err com o erro que ocorreu durante a leitura do arquivo.
+
 fn main() - Função principal do programa.
+
 let caminho_do_arquivo = "caminho/para/arquivo.txt"; - Define a variável caminho_do_arquivo com o caminho do arquivo que deseja ler.
+
 let resultado = ler_arquivo_txt(caminho_do_arquivo); - Chama a função ler_arquivo_txt com o caminho do arquivo como parâmetro e armazena o resultado em uma variável resultado.
+
 match resultado { - Usa um match para verificar o resultado da função ler_arquivo_txt.
+
 Ok(conteudo) => println!("Conteúdo do arquivo:\n{}", conteudo), - Se a função retornou Ok, imprime o conteúdo do arquivo.
+
 Err(erro) => println!("Erro ao ler o arquivo: {}", erro), - Se a função retornou Err, imprime a mensagem de erro.
+
 } - Fecha o bloco match.
+
 Observações:
 
 Você precisa substituir caminho/para/arquivo.txt pelo caminho real do seu arquivo TXT.
@@ -393,7 +417,7 @@ Criando um servidor de meteorologia em Rust para ver a temperatura de uma cidade
 
 Rust
 
-```
+```rust
 use actix_web::{App, HttpServer, Responder};
 use serde::Deserialize;
 use reqwest::Client;
@@ -413,7 +437,6 @@ struct WeatherMain {
 Use o código com cuidado.
 3. Definindo a rota para a API:
 
-Rust
 
 async fn get_weather(city: &str) -> impl Responder {
     let client = Client::new();
@@ -426,7 +449,7 @@ async fn get_weather(city: &str) -> impl Responder {
 Use o código com cuidado.
 4. Iniciando o servidor:
 
-Rust
+
 fn main() {
     let app = App::new()
         .service(web::resource("/weather/{city}").route(get_weather));
@@ -437,6 +460,7 @@ fn main() {
         .run()
         .unwrap();
 }
+
 ```
 
 
@@ -471,6 +495,8 @@ Documentação da biblioteca reqwest: [https://docs.
 
 # Keycloak
 
+```rut
+
 use keycloak_client::{KeycloakClient, KeycloakError};
 
 fn main() -> Result<(), KeycloakError> {
@@ -488,6 +514,8 @@ fn main() -> Result<(), KeycloakError> {
 
     Ok(())
 }
+
+```
 
 O código que você forneceu faz o seguinte:
 
