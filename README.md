@@ -781,7 +781,7 @@ Um exemplo básico de Cargo.toml pode ser:
 ```rust
 
 toml
-Copy code
+
 [package]
 name = "meu_projeto"
 version = "0.1.0"
@@ -793,8 +793,6 @@ Um exemplo básico de main.rs usando Actix pode ser:
 
 ```
 
-rust
-Copy code
 
 ```rust
 
@@ -860,7 +858,7 @@ E aqui está um exemplo básico de index.html:
 ```html
 
 html
-Copy code
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -889,7 +887,7 @@ E o conteúdo básico de script.js:
 ```javascript
 
 javascript
-Copy code
+
 var map = L.map('map').setView([51.505, -0.09], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
