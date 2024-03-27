@@ -985,7 +985,7 @@ var vilaOlimpiaMarker = L.marker([-23.5917, -46.6850]).addTo(map);
 vilaOlimpiaMarker.bindPopup("<b>Vila Olímpia</b>").openPopup();
 
 // Função para obter a temperatura atual
-function getTemperature(lat, lon) {
+function getTemperature(lat, lon, marker) {
     var apiKey = 'SUA_CHAVE_DE_API';
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&units=metric&appid=' + apiKey;
 
@@ -994,16 +994,18 @@ function getTemperature(lat, lon) {
         .then(data => {
             var temperature = data.main.temp;
             console.log("Temperatura atual:", temperature + "°C");
-            // Aqui você pode fazer o que quiser com a temperatura, como exibi-la em algum lugar do seu aplicativo.
+            // Exibe a temperatura ao lado do marcador no mapa Leaflet
+            marker.bindPopup("Temperatura: " + temperature + "°C").openPopup();
         })
         .catch(error => console.log("Erro ao obter temperatura:", error));
 }
 
 // Obtém e exibe a temperatura para São Paulo
-getTemperature(-23.5505, -46.6333);
+getTemperature(-23.5505, -46.6333, saoPauloMarker);
 
 // Obtém e exibe a temperatura para a Vila Olímpia
-getTemperature(-23.5917, -46.6850);
+getTemperature(-23.5917, -46.6850, vilaOlimpiaMarker);
+
 
 ```
 
