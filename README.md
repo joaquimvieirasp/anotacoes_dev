@@ -952,5 +952,44 @@ Neste exemplo, as coordenadas [-23.5917, -46.6850] representam a localização a
 Atualize a Página HTML: Certifique-se de que o arquivo HTML (index.html) esteja referenciando corretamente o arquivo script.js.
 Depois de fazer esses ajustes e recarregar a página no navegador, você deve ver o mapa Leaflet com um marcador indicando a localização da Vila Olímpia em São Paulo. O balão de informações "Vila Olímpia" deve ser exibido quando você clicar no marcador. Certifique-se de ajustar as coordenadas para refletir a localização precisa da Vila Olímpia.
 
+### Obter temperatura atual da regiao
 
+```javascript
+
+var map = L.map('map').setView([-23.5505, -46.6333], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Adiciona marcador para a cidade de São Paulo
+var saoPauloMarker = L.marker([-23.5505, -46.6333]).addTo(map);
+saoPauloMarker.bindPopup("<b>São Paulo</b>").openPopup();
+
+// Adiciona marcador para a Vila Olímpia
+var vilaOlimpiaMarker = L.marker([-23.5917, -46.6850]).addTo(map);
+vilaOlimpiaMarker.bindPopup("<b>Vila Olímpia</b>").openPopup();
+
+// Função para obter a temperatura atual
+function getTemperature(lat, lon) {
+    var apiKey = 'SUA_CHAVE_DE_API';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&units=metric&appid=' + apiKey;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            var temperature = data.main.temp;
+            console.log("Temperatura atual:", temperature + "°C");
+            // Aqui você pode fazer o que quiser com a temperatura, como exibi-la em algum lugar do seu aplicativo.
+        })
+        .catch(error => console.log("Erro ao obter temperatura:", error));
+}
+
+// Obtém e exibe a temperatura para São Paulo
+getTemperature(-23.5505, -46.6333);
+
+// Obtém e exibe a temperatura para a Vila Olímpia
+getTemperature(-23.5917, -46.6850);
+
+```
 
