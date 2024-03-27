@@ -947,6 +947,17 @@ var vilaOlimpiaMarker = L.marker([-23.5917, -46.6850]).addTo(map);
 vilaOlimpiaMarker.bindPopup("<b>Vila Olímpia</b>").openPopup();
 
 ```
+
+### Marcador para Parque Paulistano 
+
+```javascript
+
+// Adiciona marcador para o bairro Parque Paulistano
+var parquePaulistanoMarker = L.marker([/* coordenadas do Parque Paulistano */]).addTo(map);
+parquePaulistanoMarker.bindPopup("<b>Parque Paulistano</b>").openPopup();
+
+```
+
 Neste exemplo, as coordenadas [-23.5917, -46.6850] representam a localização aproximada da Vila Olímpia em São Paulo. Um marcador é adicionado a essas coordenadas no mapa Leaflet, e um balão de informações com o texto "Vila Olímpia" é vinculado a esse marcador.
 
 Atualize a Página HTML: Certifique-se de que o arquivo HTML (index.html) esteja referenciando corretamente o arquivo script.js.
