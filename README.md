@@ -921,7 +921,17 @@ async fn get_static_file(path: web::Path<String>) -> impl Responder {
 }
 Com essas mudanças, seu servidor web Rust continuará a servir o arquivo JavaScript corretamente, independentemente de onde ele esteja localizado dentro do seu projeto.
 
+No exemplo fornecido, o arquivo Rust (main.rs) contém o código para criar um servidor web usando o framework Actix-web. Aqui está a função principal desse arquivo:
 
+Criação do Servidor Web: O arquivo main.rs define um servidor web usando o framework Actix-web. Ele configura rotas para servir arquivos estáticos, como o arquivo HTML, JavaScript e CSS necessários para exibir o mapa Leaflet no navegador.
+
+Manuseio de Solicitações: O servidor web é configurado para lidar com solicitações HTTP, incluindo aquelas para o arquivo HTML principal (index.html) e para outros arquivos estáticos, como JavaScript e CSS. Ele responde a essas solicitações servindo os arquivos correspondentes.
+
+Configuração do Roteamento: O código define rotas para responder a diferentes tipos de solicitações. Por exemplo, a rota / é configurada para servir o arquivo HTML principal, enquanto outras rotas são configuradas para servir arquivos estáticos específicos.
+
+Funções Auxiliares: O código também inclui funções auxiliares, como get_static_file(), que são usadas para ler e servir arquivos estáticos.
+
+Em resumo, o arquivo Rust (main.rs) funciona como o ponto de entrada do servidor web e contém a lógica necessária para configurar e iniciar o servidor, bem como para lidar com solicitações HTTP e servir arquivos estáticos.
 
 
 
