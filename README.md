@@ -933,7 +933,24 @@ Funções Auxiliares: O código também inclui funções auxiliares, como get_st
 
 Em resumo, o arquivo Rust (main.rs) funciona como o ponto de entrada do servidor web e contém a lógica necessária para configurar e iniciar o servidor, bem como para lidar com solicitações HTTP e servir arquivos estáticos.
 
+### Marcador para Vila Olimpia 
 
+```javascript
+
+var map = L.map('map').setView([-23.5917, -46.6850], 15);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var vilaOlimpiaMarker = L.marker([-23.5917, -46.6850]).addTo(map);
+vilaOlimpiaMarker.bindPopup("<b>Vila Olímpia</b>").openPopup();
+
+```
+Neste exemplo, as coordenadas [-23.5917, -46.6850] representam a localização aproximada da Vila Olímpia em São Paulo. Um marcador é adicionado a essas coordenadas no mapa Leaflet, e um balão de informações com o texto "Vila Olímpia" é vinculado a esse marcador.
+
+Atualize a Página HTML: Certifique-se de que o arquivo HTML (index.html) esteja referenciando corretamente o arquivo script.js.
+Depois de fazer esses ajustes e recarregar a página no navegador, você deve ver o mapa Leaflet com um marcador indicando a localização da Vila Olímpia em São Paulo. O balão de informações "Vila Olímpia" deve ser exibido quando você clicar no marcador. Certifique-se de ajustar as coordenadas para refletir a localização precisa da Vila Olímpia.
 
 
 
