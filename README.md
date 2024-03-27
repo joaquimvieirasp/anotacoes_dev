@@ -954,6 +954,20 @@ Depois de fazer esses ajustes e recarregar a página no navegador, você deve ve
 
 ### Obter temperatura atual da regiao
 
+Como mostrar a temperatura atual da cidade de São paulo e Vila olimpia
+
+Para exibir a temperatura atual da cidade de São Paulo e da Vila Olímpia, você precisará usar uma API de previsão do tempo para obter os dados de temperatura atual para essas localidades e, em seguida, exibir esses dados no seu aplicativo. Uma API comum usada para isso é a OpenWeatherMap.
+
+Aqui está uma abordagem básica de como você pode fazer isso:
+
+Obter Chave da API: Primeiro, você precisa se inscrever no serviço da OpenWeatherMap para obter uma chave de API.
+
+Fazer Requisições à API: Você usará a chave de API para fazer requisições à API da OpenWeatherMap para obter os dados de temperatura atual para a cidade de São Paulo e a Vila Olímpia.
+
+Exibir Dados no Seu Aplicativo: Após receber os dados da API, você pode exibir a temperatura atual no seu aplicativo, por exemplo, ao lado dos marcadores no mapa Leaflet.
+
+Aqui está um exemplo de como você pode fazer isso usando JavaScript para fazer as requisições à API da OpenWeatherMap e exibir os dados no mapa Leaflet:
+
 ```javascript
 
 var map = L.map('map').setView([-23.5505, -46.6333], 12);
