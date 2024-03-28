@@ -1184,3 +1184,54 @@ function initializeMap() {
 }
 
 ```
+
+### Adicioanar video ao mapa
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa com Câmera ao Vivo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-23.5505, -46.6333], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // URL do vídeo ao vivo
+        var videoUrl = "URL_DO_STREAMING_DE_VIDEO";
+
+        // Adiciona a camada de vídeo ao vivo ao mapa
+        var videoLayer = L.videoOverlay(videoUrl, [[-23.5505, -46.6333], [-23.55, -46.63]], { opacity: 0.7 }).addTo(map);
+
+        // Adiciona controles de reprodução do vídeo
+        videoLayer.getElement().autoplay = true;
+        videoLayer.getElement().controls = true;
+    </script>
+</body>
+</html>
+
+```
+Substitua "URL_DO_STREAMING_DE_VIDEO" pelo URL da transmissão de vídeo ao vivo. Certifique-se de usar um URL compatível com o formato de vídeo suportado pelo navegador.
+
+L.videoOverlay() é usado para criar uma camada de vídeo ao vivo. Ele recebe o URL do vídeo, a extensão do mapa e algumas opções, como opacidade.
+
+videoLayer.getElement().autoplay = true; e videoLayer.getElement().controls = true; são usados para habilitar os controles de reprodução do vídeo, como play, pause e volume.
+
+Com este código, você poderá adicionar uma câmera ao vivo ao seu mapa Leaflet e exibir o vídeo em tempo real sobre o mapa. Certifique-se de ter uma conexão de internet estável e o URL de streaming de vídeo correto para que o vídeo seja exibido corretamente.
