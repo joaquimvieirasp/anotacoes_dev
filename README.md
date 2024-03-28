@@ -1143,3 +1143,44 @@ Este é um exemplo básico para começar. Dependendo das suas necessidades espec
 
 ```
 
+### Javascript com keycloak
+
+```javascript
+
+// Inicializa o Keycloak
+var keycloak = Keycloak({
+    url: 'URL_DO_KEYCLOAK',
+    realm: 'NOME_DO_REALM',
+    clientId: 'NOME_DO_CLIENTE'
+});
+
+// Inicializa o mapa apenas se o usuário estiver autenticado
+keycloak.init({ onLoad: 'login-required' }).then(function(authenticated) {
+    if (authenticated) {
+        console.log('Usuário autenticado');
+        initializeMap();
+    } else {
+        console.log('Falha na autenticação');
+    }
+}).catch(function() {
+    console.log('Erro ao inicializar o Keycloak');
+});
+
+// Função para inicializar o mapa
+function initializeMap() {
+    var map = L.map('map').setView([-23.5505, -46.6333], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Adiciona marcador para a cidade de São Paulo
+    var saoPauloMarker = L.marker([-23.5505, -46.6333]).addTo(map);
+    saoPauloMarker.bindPopup("<b>São Paulo</b>").openPopup();
+
+    // Adiciona marcador para o Bairro Jardim Helena
+    var jardimHelenaMarker = L.marker([/* coordenadas do Bairro Jardim Helena */]).addTo(map);
+    jardimHelenaMarker.bindPopup("<b>Bairro Jardim Helena</b>").openPopup();
+}
+
+```
