@@ -1020,3 +1020,56 @@ getTemperature(-23.5917, -46.6850, vilaOlimpiaMarker);
 
 ```
 
+### Integração com Keycloak
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo Protegido pelo Keycloak</title>
+</head>
+<body>
+    <h1>Aplicativo Protegido pelo Keycloak</h1>
+    
+    <script src="https://cdn.keycloak.org/12.0.4/keycloak.js"></script>
+    <script>
+        var keycloak = Keycloak({
+            url: 'URL_DO_KEYCLOAK',
+            realm: 'NOME_DO_REALM',
+            clientId: 'NOME_DO_CLIENTE'
+        });
+
+        keycloak.init({ onLoad: 'login-required' }).then(function(authenticated) {
+            if (authenticated) {
+                console.log('Usuário autenticado');
+                // Aqui você pode adicionar o código para exibir o conteúdo protegido pelo Keycloak
+            } else {
+                console.log('Falha na autenticação');
+            }
+        }).catch(function() {
+            console.log('Erro ao inicializar o Keycloak');
+        });
+    </script>
+</body>
+</html>
+
+```
+
+Aqui estão os passos básicos para usar o Keycloak em seu aplicativo da web:
+
+Configuração do Realm no Keycloak: Primeiro, você precisa configurar um Realm no Keycloak e definir as configurações de clientes e usuários. Você precisará criar um cliente no Keycloak para representar seu aplicativo da web.
+
+Configuração do Cliente no Aplicativo: No lado do seu aplicativo da web, você precisa configurar o cliente Keycloak para autenticação. Isso geralmente envolve incluir o adaptador Keycloak para JavaScript em seu código e configurá-lo para se comunicar com o servidor Keycloak.
+
+Autenticação do Usuário: Ao acessar o aplicativo da web, os usuários serão redirecionados para o servidor Keycloak para autenticação. Depois de fazer login com sucesso, eles serão redirecionados de volta para o seu aplicativo da web com um token de acesso.
+
+Autorização e Proteção de Recursos: Você pode usar os tokens de acesso recebidos do Keycloak para proteger recursos em seu aplicativo da web. Isso envolve verificar os tokens de acesso recebidos do Keycloak para garantir que os usuários tenham permissão para acessar determinados recursos.
+
+Aqui está um exemplo básico de como você pode configurar o Keycloak em seu aplicativo da web usando JavaScript:
+
+Certifique-se de substituir 'URL_DO_KEYCLOAK', 'NOME_DO_REALM' e 'NOME_DO_CLIENTE' pelos valores correspondentes da sua configuração do Keycloak.
+
+Este é um exemplo básico para começar. Dependendo das suas necessidades específicas e do fluxo de autenticação que você deseja usar (por exemplo, OpenID Connect, OAuth2), pode ser necessário ajustar a configuração e o código para se adequar ao seu caso de uso específico. Além disso, você pode precisar configurar e proteger recursos em seu aplicativo da web com base nas permissões dos usuários.
