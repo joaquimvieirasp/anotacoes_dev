@@ -1073,3 +1073,73 @@ Aqui está um exemplo básico de como você pode configurar o Keycloak em seu ap
 Certifique-se de substituir 'URL_DO_KEYCLOAK', 'NOME_DO_REALM' e 'NOME_DO_CLIENTE' pelos valores correspondentes da sua configuração do Keycloak.
 
 Este é um exemplo básico para começar. Dependendo das suas necessidades específicas e do fluxo de autenticação que você deseja usar (por exemplo, OpenID Connect, OAuth2), pode ser necessário ajustar a configuração e o código para se adequar ao seu caso de uso específico. Além disso, você pode precisar configurar e proteger recursos em seu aplicativo da web com base nas permissões dos usuários.
+
+### Melhorias para o htmal 
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa com Menu</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        
+        #menu {
+            width: 200px;
+            float: left;
+        }
+        
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        #menu li {
+            margin-bottom: 10px;
+        }
+        
+        #menu a {
+            display: block;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        #menu a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#">Opção 1</a></li>
+            <li><a href="#">Opção 2</a></li>
+            <li><a href="#">Opção 3</a></li>
+        </ul>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-23.5505, -46.6333], 12);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    </script>
+</body>
+</html>
+
+```
+
