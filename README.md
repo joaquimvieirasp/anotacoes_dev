@@ -1232,6 +1232,57 @@ Substitua "URL_DO_STREAMING_DE_VIDEO" pelo URL da transmissão de vídeo ao vivo
 
 L.videoOverlay() é usado para criar uma camada de vídeo ao vivo. Ele recebe o URL do vídeo, a extensão do mapa e algumas opções, como opacidade.
 
+
 videoLayer.getElement().autoplay = true; e videoLayer.getElement().controls = true; são usados para habilitar os controles de reprodução do vídeo, como play, pause e volume.
 
 Com este código, você poderá adicionar uma câmera ao vivo ao seu mapa Leaflet e exibir o vídeo em tempo real sobre o mapa. Certifique-se de ter uma conexão de internet estável e o URL de streaming de vídeo correto para que o vídeo seja exibido corretamente.
+
+### Geofabrik - INSTRUÇÕES DE USO
+
+Para instalar geofabrik:
+
+
+https://hub.docker.com/r/postgis/postgis/
+
+podman run --network host --name meu-postgis -e POSTGRES_PASSWORD=SUASENHA -d postgis/postgis
+
+Depois de baixar os mapas do geofabrik executar o comando:
+
+osm2pgsql ~/Downloads/brazil-latest.osm.pbf -d osm -U postgres -H localhost -P 5432 -S /usr/share/osm2pgsql/default.style --hstore
+
+Com o postgis aberto, criar um banco de dados com o nome osm, criar as seguintes tabelas:
+
+CREATE EXTENSION postgis;
+CREATE EXTENSION hstore;
+
+Caso a porta 5432 esteja em uso, execute os seguints comandos para verificar se a porta 5432 esteja em uso, execurte os seguintes comandos:
+Para descobrir o servico do postgres se estiver rodando no hospedeiro :
+sudo systemctl  | grep post
+
+No meu caso o serviço era: postgresql.service
+Para parar:
+sudo systemctl stop postgresql.service
+
+Para verificar se parou :
+sudo systemctl status postgresql.service
+○ postgresql.service - PostgreSQL RDBMS
+    Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
+    Active: inactive (dead) since Mon 2024-04-29 11:04:18 -03; 3s ago
+   Process: 292184 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+  Main PID: 292184 (code=exited, status=0/SUCCESS)
+       CPU: 2ms
+Mostra Acitve: inactive
+
+Então verifiquei o container: 
+podman ps -a
+CONTAINER ID  IMAGE                                    COMMAND               CREATED      STATUS                    PORTS                   NAMES
+cd6b45db39f7  localhost/test_apache_containter:latest  apache2ctl -D FOR...  7 weeks ago  Exited (137) 7 weeks ago  0.0.0.0:8888->80/tcp    inspiring_clarke
+04dda8865c06  localhost/iac_firstservice:latest        iac_firstservice      6 weeks ago  Exited (137) 6 weeks ago                          focused_colden
+f17afe0b51e8  docker.io/postgis/postgis:latest         postgres              13 days ago  Created                   0.0.0.0:5432->5432/tcp  joe-postgis
+
+Para startar o container: 
+       podman start joe-postgis
+
+ podman ps
+CONTAINER ID  IMAGE                             COMMAND     CREATED      STATUS            PORTS                   NAMES
+f17afe0b51e8  docker.io/postgis/postgis:latest  postgres    13 days ago  Up 4 seconds ago  0.0.0.0:5432->5432/tcp  joe-postgis      
