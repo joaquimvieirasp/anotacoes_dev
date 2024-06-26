@@ -159,10 +159,15 @@ _esse comando cria uma nova branch e já muda pra ela_
 
 # Atualizar a URL do repositório remoto:
 Se o repositório foi renomeado ou movido para uma nova localização, você precisará atualizar o URL do repositório remoto no seu ambiente local. Para fazer isso, use o seguinte comando no terminal (substituindo o URL pelo novo URL, se aplicável):
+![image](https://github.com/joaquimvieirasp/anotacoes_dev/assets/77693436/c920921d-880a-4867-9062-286c3a30f29b)
 
 bash
 Copiar código
+```git
+
 git remote set-url origin https://github.com/novo-usuario/novo-repositorio.git
+
+```
 
 # Postgres
 
