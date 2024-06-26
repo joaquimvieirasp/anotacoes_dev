@@ -157,6 +157,13 @@ git checkout -b + nome da branch a ser criada
 
 _esse comando cria uma nova branch e já muda pra ela_
 
+# Atualizar a URL do repositório remoto:
+Se o repositório foi renomeado ou movido para uma nova localização, você precisará atualizar o URL do repositório remoto no seu ambiente local. Para fazer isso, use o seguinte comando no terminal (substituindo o URL pelo novo URL, se aplicável):
+
+bash
+Copiar código
+git remote set-url origin https://github.com/novo-usuario/novo-repositorio.git
+
 # Postgres
 
 Principais comandos para acessar o postgres:
