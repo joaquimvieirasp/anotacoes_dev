@@ -1,5 +1,34 @@
 # Anotacoes_dev
 # Anotações de desenvovimento
+# Vue
+Para corrigir o uso do v-for com a diretiva v-bind:key, você deve atribuir uma chave única para cada elemento gerado pelo loop v-for. Isso é importante para o Vue.js poder identificar cada elemento de forma eficiente e realizar atualizações no DOM de maneira adequada.
+
+Aqui está como você pode corrigir a função:
+
+```vue
+
+<template>
+    <ul>
+        <li v-for="(nome, index) in nomes" :key="index">{{ nome }}</li>
+    </ul>
+</template>
+```
+Neste exemplo:
+
+v-for="(nome, index) in nomes" itera sobre o array nomes, onde nome é o valor do elemento atual e index é o índice desse elemento no array.
+:key="index" atribui index como a chave única para cada <li> gerado pelo loop v-for. Usar o índice como chave é uma abordagem comum quando os itens em nomes não têm uma propriedade única identificável por chave.
+No entanto, se os itens em nomes possuem uma propriedade única (como um ID) que pode ser usada como chave, é preferível usar essa propriedade em vez do índice. Por exemplo:
+
+```vue
+
+<template>
+    <ul>
+        <li v-for="nome in nomes" :key="nome.id">{{ nome }}</li>
+    </ul>
+</template>
+```
+Neste caso, assumimos que cada objeto nome dentro de nomes possui uma propriedade id que é única. É sempre melhor usar uma chave única e estável sempre que possível, para garantir um desempenho ideal e evitar problemas potenciais com a renderização e a reatividade no Vue.js.
+
 # Node
 Instalar node com nvm (node version manager)
 Instalar o node com o nvm é possível trocar de versão a qualquer momento, é possível setar uma versão do node globalamente na máquina ou instalar um versão do node somente em um projeto expecífico.
