@@ -1,3 +1,10 @@
+# Como criar um projeto com vue3:
+![image](https://github.com/user-attachments/assets/a212167c-23ed-4da7-b141-2eaf82cb1f22)
+
+
+
+
+
 # Anotacoes_dev
 # Anotações de desenvovimento
 # Vue
